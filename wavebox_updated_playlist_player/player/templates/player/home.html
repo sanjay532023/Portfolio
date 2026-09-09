@@ -1,0 +1,12 @@
+{% extends "player/base.html" %}
+{% block title %}WaveBox - Playlists{% endblock %}
+{% block content %}
+<section class="hero"><p class="eyebrow">YOUR MUSIC</p><h1>Playlists</h1><p>Select a playlist to view its songs.</p></section>
+<section class="playlist-grid">
+{% for playlist in playlists %}
+<a class="playlist-card" href="{% url 'playlist_detail' playlist.pk %}">
+<div class="playlist-icon">🎵</div><div><h2>{{ playlist.name }}</h2><span>Open playlist →</span></div>
+</a>
+{% empty %}<div class="empty"><h2>No playlists yet</h2><p>Log in as admin to create one.</p></div>{% endfor %}
+</section>
+{% endblock %}

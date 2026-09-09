@@ -1,0 +1,8 @@
+{% extends "player/base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}<h1>Dashboard</h1><div class="admin-grid">
+<div class="form-card"><h2>Create Playlist</h2><form method="post">{% csrf_token %}{{ playlist_form.name }}<button class="primary" name="create_playlist">Create Playlist</button></form></div>
+<div class="form-card"><h2>Upload MP3</h2><form method="post" enctype="multipart/form-data">{% csrf_token %}{{ track_form.title }}{{ track_form.playlist }}{{ track_form.audio }}<button class="primary" name="upload_track">Upload Song</button></form></div>
+</div><h2>Playlists</h2>
+{% for playlist in playlists %}<div class="library"><strong>{{ playlist.name }}</strong> — {{ playlist.tracks.count }} song{{ playlist.tracks.count|pluralize }}
+<a class="danger" href="{% url 'delete_playlist' playlist.pk %}">Delete</a>
+{% for track in playlist.tracks.all %}<div class="library-track">{{ track.title }} <a class="danger" href="{% url 'delete_track' track.pk %}">Delete</a></div>{% endfor %}</div>{% endfor %}{% endblock %}
