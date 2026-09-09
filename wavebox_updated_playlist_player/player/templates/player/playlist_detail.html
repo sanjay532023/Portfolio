@@ -1,7 +1,7 @@
 {% extends "player/base.html" %} {% block title %}{{ playlist.name }} - WaveBox{% endblock %} {% block content %}
 <div class="playlist-header"><a class="back-link" href="{% url 'home' %}">← Back to Playlists</a>
     <p class="eyebrow">PLAYLIST</p>
-    <h1>{{ playlist.name }}</h1></div>
+    <h3>{{ playlist.name }}</h3></div>
 <section class="track-list">
     {% for track in playlist.tracks.all %}
     <button type="button" class="track" data-src="{{ track.audio.url }}" data-title="{{ track.title }}">
