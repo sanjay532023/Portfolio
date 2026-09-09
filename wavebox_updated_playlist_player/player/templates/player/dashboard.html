@@ -9,7 +9,7 @@
     </div>
     <div class="form-card">
         <h2>Upload MP3</h2>
-        <form method="post" enctype="multipart/form-data">{% csrf_token %}{{ track_form.playlist }}{{ track_form.title }}{{ track_form.audio }}
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}{{ track_form.playlist }}{{ track_form.audio }}{{ track_form.title }}
             <button class="primary" name="upload_track">Upload Song</button>
         </form>
     </div>
