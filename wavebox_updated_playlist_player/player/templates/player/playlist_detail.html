@@ -1,19 +1,30 @@
-{% extends "player/base.html" %}
-{% block title %}{{ playlist.name }} - WaveBox{% endblock %}
-{% block content %}
-<div class="playlist-header"><a class="back-link" href="{% url 'home' %}">← Back to Playlists</a><p class="eyebrow">PLAYLIST</p><h1>{{ playlist.name }}</h1></div>
+{% extends "player/base.html" %} {% block title %}{{ playlist.name }} - WaveBox{% endblock %} {% block content %}
+<div class="playlist-header"><a class="back-link" href="{% url 'home' %}">← Back to Playlists</a>
+    <p class="eyebrow">PLAYLIST</p>
+    <h1>{{ playlist.name }}</h1></div>
 <section class="track-list">
-{% for track in playlist.tracks.all %}
-<button type="button" class="track" data-src="{{ track.audio.url }}" data-title="{{ track.title }}">
-<span>{{ forloop.counter }}</span><strong>{{ track.title }}</strong><span>▶</span>
-</button>
-{% empty %}<div class="empty"><h2>No songs in this playlist</h2></div>{% endfor %}
+    {% for track in playlist.tracks.all %}
+    <button type="button" class="track" data-src="{{ track.audio.url }}" data-title="{{ track.title }}">
+        <span>{{ forloop.counter }}</span><strong>{{ track.title }}</strong><span>▶</span>
+    </button>
+    {% empty %}
+    <div class="empty">
+        <h2>No songs in this playlist</h2></div>{% endfor %}
 </section>
 <div class="player-bar">
-<div id="nowTitle">Select a song</div>
-<div class="controls"><button id="prev">⏮</button><button id="back">↶10</button><button id="play">▶</button><button id="stop">■</button><button id="next">⏭</button></div>
-<div class="progress"><span id="current">0:00</span><input id="seek" type="range" min="0" max="100" value="0" step="0.1"><span id="duration">0:00</span></div>
-<div class="volume">🔊 <input id="volume" type="range" min="0" max="1" value="0.8" step="0.01"></div>
-<audio id="audio" preload="metadata"></audio>
+    <div id="nowTitle">Select a song</div>
+    <div class="controls">
+        <button id="prev">⏮</button>
+        <button id="back">↶10</button>
+        <button id="play">▶</button>
+        <button id="stop">■</button>
+        <button id="next">⏭</button>
+    </div>
+    <div class="progress"><span id="current">0:00</span>
+        <input id="seek" type="range" min="0" max="100" value="0" step="0.1"><span id="duration">0:00</span></div>
+    <div class="volume">🔊
+        <input id="volume" type="range" min="0" max="1" value="0.8" step="0.01">
+    </div>
+    <audio id="audio" preload="metadata"></audio>
 </div>
 {% endblock %}
